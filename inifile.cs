@@ -18,7 +18,7 @@
 using System;
 using System.IO;
 
-namespace INI
+namespace panINI
 {
 	public class INIFile
 	{

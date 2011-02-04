@@ -16,9 +16,9 @@
 */
 
 using System;
-using INI;
+using panINI;
 
-class INITest
+class panINITest
 {
 	public static void Main (string[] args)
 	{
