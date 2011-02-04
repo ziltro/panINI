@@ -17,10 +17,10 @@
 
 all: inifile.dll testini.exe
 
-inifile.dll: inifile.cs
+%.dll: %.cs
 	gmcs -t:library $<
 
-testini.exe: testini.cs
+%.exe: %.cs
 	gmcs -r:inifile.dll $<
 
 clean:

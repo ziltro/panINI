@@ -25,7 +25,11 @@ class INITest
 		INIFile testini = new INIFile("test.ini");
 		Console.WriteLine("String: " + testini.GetString("abc", "str"));
 		Console.WriteLine("Int: " + testini.GetInt("abc", "int"));
+		Console.WriteLine("Float: " + testini.GetFloat("abc", "float"));
 		Console.WriteLine("Hello: " + testini.GetString("def", "hello"));
+		Console.WriteLine("Data paths:");
+		Console.WriteLine(testini.GetPath("Section1", "data1"));
+		Console.WriteLine(testini.GetPath("Section1", "data2"));
 	}
 }
 

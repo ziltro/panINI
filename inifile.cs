@@ -30,6 +30,43 @@ namespace INI
 			this.FileName = sFileName;
 		}
 		
+		public string GetPath(string sSection, string sKey)
+		{
+			return GetPath(sSection, sKey, "");
+		}
+		
+		public string GetPath(string sSection, string sKey, string sDefault)
+		{
+			return GetPath(sSection, sKey, "", System.IO.Path.DirectorySeparatorChar);
+		}
+		
+		public string GetPath(string sSection, string sKey, string sDefault, char cPathSeparator)
+		{
+			string sPath = this.GetString(sSection, sKey, sDefault);
+			string sChar = cPathSeparator.ToString();
+			if (!sPath.EndsWith(sChar))
+				sPath += sChar;
+			
+			return sPath;
+		}
+		
+		public double GetFloat(string sSection, string sKey)
+		{
+			return GetFloat(sSection, sKey, 0.0);
+		}
+		
+		public double GetFloat(string sSection, string sKey, double fDefault)
+		{
+			try
+			{
+				return double.Parse(this.GetString(sSection, sKey, ""));
+			}
+			catch
+			{
+				return fDefault;
+			}
+		}
+		
 		public int GetInt(string sSection, string sKey)
 		{
 			return GetInt(sSection, sKey, 0);
