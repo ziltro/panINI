@@ -23,9 +23,9 @@ class INITest
 	public static void Main (string[] args)
 	{
 		INIFile testini = new INIFile("test.ini");
-		Console.WriteLine("Hello");
 		Console.WriteLine("String: " + testini.GetString("abc", "str"));
 		Console.WriteLine("Int: " + testini.GetInt("abc", "int"));
+		Console.WriteLine("Hello: " + testini.GetString("def", "hello"));
 	}
 }
 

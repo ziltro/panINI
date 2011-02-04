@@ -22,8 +22,8 @@ namespace INI
 {
 	public class INIFile
 	{
-		string FileName;
-		StreamReader file;
+		private string FileName;
+		private StreamReader file;
 		
 		public INIFile(string sFileName)
 		{
@@ -64,23 +64,23 @@ namespace INI
 			
 			while ((line = this.file.ReadLine()) != null)
 			{
-				if (line.Length > 0)
-				{
-					startChar = line.Substring(0, 1);
-					if (startChar != ";")	// Ignore comment lines
-					{
-						if (startChar == "[")
-							inSection = line.StartsWith("[" + sSection + "]");
+				if (line.Length == 0)
+					continue;
+
+				startChar = line.Substring(0, 1);
+				if (startChar == ";")	// Ignore comment lines
+					continue;
+
+				if (startChar == "[")
+					inSection = line.StartsWith("[" + sSection + "]", true, null);
+		
+				if (!inSection)
+					continue;
 				
-						if (inSection)
-						{
-							if (line.StartsWith(sKey + "="))
-							{
-								ret = line.Substring(line.IndexOf("=") + 1);
-								break;
-							}
-						}
-					}
+				if (line.StartsWith(sKey + "=", true, null))
+				{
+					ret = line.Substring(line.IndexOf("=") + 1);
+					break;
 				}
 			}
 			this.file.Close();
