@@ -58,24 +58,27 @@ namespace INI
 			string line;
 			string ret;
 			bool inSection = false;
+			string startChar;
 			
 			ret = sDefault;
 			
 			while ((line = this.file.ReadLine()) != null)
 			{
-				string startChar = line.Substring(0, 1);
-				
-				if (startChar != ";")	// Ignore comment lines
+				if (line.Length > 0)
 				{
-					if (startChar == "[")
-						inSection = line.StartsWith("[" + sSection + "]");
-				
-					if (inSection)
+					startChar = line.Substring(0, 1);
+					if (startChar != ";")	// Ignore comment lines
 					{
-						if (line.StartsWith(sKey + "="))
+						if (startChar == "[")
+							inSection = line.StartsWith("[" + sSection + "]");
+				
+						if (inSection)
 						{
-							ret = line.Substring(line.IndexOf("=") + 1);
-							break;
+							if (line.StartsWith(sKey + "="))
+							{
+								ret = line.Substring(line.IndexOf("=") + 1);
+								break;
+							}
 						}
 					}
 				}
