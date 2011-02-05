@@ -23,7 +23,6 @@ namespace panINI
 	public class INIFile
 	{
 		private string FileName;
-		private StreamReader file;
 		
 		public INIFile(string sFileName)
 		{
@@ -91,7 +90,7 @@ namespace panINI
 		
 		public string GetString(string sSection, string sKey, string sDefault)
 		{
-			this.OpenFile();
+			StreamReader file = File.OpenText(this.FileName);
 			string line;
 			string ret;
 			bool inSection = false;
@@ -99,7 +98,7 @@ namespace panINI
 			
 			ret = sDefault;
 			
-			while ((line = this.file.ReadLine()) != null)
+			while ((line = file.ReadLine()) != null)
 			{
 				if (line.Length == 0)
 					continue;
@@ -120,13 +119,8 @@ namespace panINI
 					break;
 				}
 			}
-			this.file.Close();
+			file.Close();
 			return ret;
-		}
-		
-		private void OpenFile()
-		{
-			this.file = File.OpenText(this.FileName);
 		}
 	} 
 }
