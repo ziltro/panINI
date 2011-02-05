@@ -90,16 +90,19 @@ namespace panINI
 		
 		public string GetString(string sSection, string sKey, string sDefault)
 		{
-			StreamReader file = File.OpenText(this.FileName);
+			StreamReader file;
 			string line;
 			string ret;
 			bool inSection = false;
 			string startChar;
 			
 			ret = sDefault;
-			
+			file = File.OpenText(this.FileName);
+
 			while ((line = file.ReadLine()) != null)
 			{
+				line = line.Trim();
+				
 				if (line.Length == 0)
 					continue;
 
@@ -115,7 +118,7 @@ namespace panINI
 				
 				if (line.StartsWith(sKey + "=", true, null))
 				{
-					ret = line.Substring(line.IndexOf("=") + 1);
+					ret = line.Substring(sKey.Length + 1);
 					break;
 				}
 			}
