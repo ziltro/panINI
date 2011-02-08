@@ -32,10 +32,10 @@ class panINITest
 		Console.WriteLine(testini.GetPath("Section1", "data1"));
 		Console.WriteLine(testini.GetPath("Section1", "data2"));
 		Console.WriteLine("Lines with comments:");
-		Console.WriteLine(testini.GetPath("Comments", "Space"));
-		Console.WriteLine(testini.GetPath("Comments", "Spaces"));
-		Console.WriteLine(testini.GetPath("Comments", "Tab"));
-		Console.WriteLine(testini.GetPath("Comments", "Tabs"));
+		Console.WriteLine(testini.GetString("Comments", "Space"));
+		Console.WriteLine(testini.GetString("Comments", "Spaces"));
+		Console.WriteLine(testini.GetString("Comments", "Tab"));
+		Console.WriteLine(testini.GetString("Comments", "Tabs"));
 		Console.WriteLine("End of file: " + testini.GetString("End", "LastLine"));
 	}
 }
