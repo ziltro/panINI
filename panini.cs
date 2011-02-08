@@ -101,6 +101,7 @@ namespace panINI
 
 			while ((line = file.ReadLine()) != null)
 			{
+				line = line.Split(';')[0];
 				line = line.Trim();
 				
 				if (line.Length == 0)
