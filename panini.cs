@@ -92,7 +92,7 @@ namespace panINI
 		{
 			StreamReader file;
 			string line;
-			string ret;
+			string Value;
 			bool inSection = false;
 			string startChar;
 			
@@ -118,12 +118,12 @@ namespace panINI
 				
 				if (line.StartsWith(sKey + "=", true, null))
 				{
-					ret = line.Substring(sKey.Length + 1);
+					Value = line.Substring(sKey.Length + 1);
 					break;
 				}
 			}
 			file.Close();
-			return ret;
+			return Value;
 		}
 	} 
 }
