@@ -15,14 +15,14 @@
 #	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-all: inifile.dll testini.exe
+all: panini.dll testini.exe
 
 %.dll: %.cs
 	gmcs -t:library $<
 
 %.exe: %.cs
-	gmcs -r:inifile.dll $<
+	gmcs -r:panini.dll $<
 
 clean:
-	rm -f *.exe *.dll
+	rm -f testini.exe panini.dll
 
