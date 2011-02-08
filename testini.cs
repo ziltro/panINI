@@ -36,6 +36,10 @@ class panINITest
 		Console.WriteLine(testini.GetString("Comments", "Spaces"));
 		Console.WriteLine(testini.GetString("Comments", "Tab"));
 		Console.WriteLine(testini.GetString("Comments", "Tabs"));
+		Console.WriteLine("Spaces at end: '" + testini.GetString("Section2", "SpacesAtEnd") + "'");
+		Console.WriteLine("Tabs at end: '" + testini.GetString("Section2", "TabsAtEnd") + "'");
+		Console.WriteLine("Doesn't exist: " + testini.GetString("Doesnt", "Exist", "---×××---"));
+		Console.WriteLine("Only key doesn't exist: " + testini.GetString("Section1", "Nope", "---×××---"));
 		Console.WriteLine("End of file: " + testini.GetString("End", "LastLine"));
 	}
 }
