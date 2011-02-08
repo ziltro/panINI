@@ -121,7 +121,7 @@ namespace panINI
 			file.Close();
 			return Value;
 		}
-		public string[] GetSection(string Section)
+		public string[] GetSectionNames()
 		{
 			StreamReader file;
 			string line;

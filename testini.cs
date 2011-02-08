@@ -44,7 +44,7 @@ class panINITest
 		Console.WriteLine("Only key doesn't exist: " + testini.GetString("Section1", "Nope", "---×××---"));
 		Console.WriteLine("End of file: " + testini.GetString("End", "LastLine"));
 
-		sec = testini.GetSection("Section1");
+		sec = testini.GetSectionNames();
 		Console.WriteLine("Sections:" + sec.Length.ToString());
 		for(int a = 0; a < sec.Length; a++)
 		{
