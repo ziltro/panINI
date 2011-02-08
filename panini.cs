@@ -24,78 +24,78 @@ namespace panINI
 	{
 		private string FileName;
 		
-		public INIFile(string sFileName)
+		public INIFile(string FileName)
 		{
-			this.FileName = sFileName;
+			this.FileName = FileName;
 		}
 		
-		public string GetPath(string sSection, string sKey)
+		public string GetPath(string Section, string Key)
 		{
-			return GetPath(sSection, sKey, "");
+			return GetPath(Section, Key, "");
 		}
 		
-		public string GetPath(string sSection, string sKey, string sDefault)
+		public string GetPath(string Section, string Key, string Default)
 		{
-			return GetPath(sSection, sKey, "", System.IO.Path.DirectorySeparatorChar);
+			return GetPath(Section, Key, "", System.IO.Path.DirectorySeparatorChar);
 		}
 		
-		public string GetPath(string sSection, string sKey, string sDefault, char cPathSeparator)
+		public string GetPath(string Section, string Key, string Default, char PathSeparator)
 		{
-			string sPath = this.GetString(sSection, sKey, sDefault);
-			string sChar = cPathSeparator.ToString();
-			if (!sPath.EndsWith(sChar))
-				sPath += sChar;
+			string Path = this.GetString(Section, Key, Default);
+			string PathSep = PathSeparator.ToString();
+			if (!Path.EndsWith(PathSep))
+				Path += PathSep;
 			
-			return sPath;
+			return Path;
 		}
 		
-		public double GetFloat(string sSection, string sKey)
+		public double GetFloat(string Section, string Key)
 		{
-			return GetFloat(sSection, sKey, 0.0);
+			return GetFloat(Section, Key, 0.0);
 		}
 		
-		public double GetFloat(string sSection, string sKey, double fDefault)
-		{
-			try
-			{
-				return double.Parse(this.GetString(sSection, sKey, ""));
-			}
-			catch
-			{
-				return fDefault;
-			}
-		}
-		
-		public int GetInt(string sSection, string sKey)
-		{
-			return GetInt(sSection, sKey, 0);
-		}
-		
-		public int GetInt(string sSection, string sKey, int iDefault)
+		public double GetFloat(string Section, string Key, double Default)
 		{
 			try
 			{
-				return int.Parse(this.GetString(sSection, sKey, ""));
+				return double.Parse(this.GetString(Section, Key, ""));
 			}
 			catch
 			{
-				return iDefault;
+				return Default;
 			}
 		}
 		
-		public string GetString(string sSection, string sKey)
+		public int GetInt(string Section, string Key)
 		{
-			return GetString(sSection, sKey, "");
+			return GetInt(Section, Key, 0);
 		}
 		
-		public string GetString(string sSection, string sKey, string sDefault)
+		public int GetInt(string Section, string Key, int Default)
+		{
+			try
+			{
+				return int.Parse(this.GetString(Section, Key, ""));
+			}
+			catch
+			{
+				return Default;
+			}
+		}
+		
+		public string GetString(string Section, string Key)
+		{
+			return GetString(Section, Key, "");
+		}
+		
+		public string GetString(string Section, string Key, string Default)
 		{
 			StreamReader file;
 			string line;
 			string Value;
 			bool inSection = false;
 
-			Value = sDefault;
+			Value = Default;
 			file = File.OpenText(this.FileName);
 
 			while ((line = file.ReadLine()) != null)
@@ -107,14 +107,14 @@ namespace panINI
 					continue;
 
 				if (line.StartsWith("["))
-					inSection = line.StartsWith("[" + sSection + "]", true, null);
+					inSection = line.StartsWith("[" + Section + "]", true, null);
 		
 				if (!inSection)
 					continue;
 				
-				if (line.StartsWith(sKey + "=", true, null))
+				if (line.StartsWith(Key + "=", true, null))
 				{
-					Value = line.Substring(sKey.Length + 1);
+					Value = line.Substring(Key.Length + 1);
 					break;
 				}
 			}
