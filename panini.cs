@@ -94,8 +94,7 @@ namespace panINI
 			string line;
 			string Value;
 			bool inSection = false;
-			string startChar;
-			
+
 			Value = sDefault;
 			file = File.OpenText(this.FileName);
 
@@ -107,11 +106,7 @@ namespace panINI
 				if (line.Length == 0)
 					continue;
 
-				startChar = line.Substring(0, 1);
-				if (startChar == ";")	// Ignore comment lines
-					continue;
-
-				if (startChar == "[")
+				if (line.StartsWith("["))
 					inSection = line.StartsWith("[" + sSection + "]", true, null);
 		
 				if (!inSection)
@@ -125,6 +120,53 @@ namespace panINI
 			}
 			file.Close();
 			return Value;
+		}
+		public string[] GetSection(string Section)
+		{
+			StreamReader file;
+			string line;
+			int SectionCount;
+			string[] Sections;
+			
+			SectionCount = 0;
+			
+			file = File.OpenText(this.FileName);
+			while ((line = file.ReadLine()) != null)
+			{
+				line = line.Split(';')[0];
+				line = line.Trim();
+				
+				if (line.Length == 0)
+					continue;
+
+				if (line.StartsWith("[") && line.EndsWith("]"))
+				{
+					SectionCount++;
+				}
+			}
+			Sections = new string[SectionCount];
+			
+			file.Close();
+
+			SectionCount = 0;
+			
+			file = File.OpenText(this.FileName);
+			while ((line = file.ReadLine()) != null)
+			{
+				line = line.Split(';')[0];
+				line = line.Trim();
+				
+				if (line.Length == 0)
+					continue;
+
+				if (line.StartsWith("[") && line.EndsWith("]"))
+				{
+					Sections[SectionCount] = line.Substring(1, line.Length - 2);
+					SectionCount++;
+				}
+			}
+			file.Close();
+			return Sections;
 		}
 	} 
 }

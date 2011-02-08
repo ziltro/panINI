@@ -22,6 +22,8 @@ class panINITest
 {
 	public static void Main (string[] args)
 	{
+		string[] sec;
+		
 		INIFile testini = new INIFile("test.ini");
 		
 		Console.WriteLine("String: " + testini.GetString("abc", "str"));
@@ -41,6 +43,13 @@ class panINITest
 		Console.WriteLine("Doesn't exist: " + testini.GetString("Doesnt", "Exist", "---×××---"));
 		Console.WriteLine("Only key doesn't exist: " + testini.GetString("Section1", "Nope", "---×××---"));
 		Console.WriteLine("End of file: " + testini.GetString("End", "LastLine"));
+
+		sec = testini.GetSection("Section1");
+		Console.WriteLine("Sections:" + sec.Length.ToString());
+		for(int a = 0; a < sec.Length; a++)
+		{
+			Console.WriteLine("Section:" + sec[a]);
+		}
 	}
 }
 
