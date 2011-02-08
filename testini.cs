@@ -23,8 +23,8 @@ class panINITest
 {
 	public static void Main (string[] args)
 	{
-		List<string> sec;
-		
+		IList<string> sec;
+
 		INIFile testini = new INIFile("test.ini");
 		
 		Console.WriteLine("String: " + testini.GetString("abc", "str"));

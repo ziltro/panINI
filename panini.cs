@@ -123,7 +123,7 @@ namespace panINI
 			return Value;
 		}
 		
-		public List<string> GetSectionNames()
+		public IList<string> GetSectionNames()
 		{
 			StreamReader file;
 			string line;
