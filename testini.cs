@@ -23,6 +23,7 @@ class panINITest
 	public static void Main (string[] args)
 	{
 		INIFile testini = new INIFile("test.ini");
+		
 		Console.WriteLine("String: " + testini.GetString("abc", "str"));
 		Console.WriteLine("Int: " + testini.GetInt("abc", "int"));
 		Console.WriteLine("Float: " + testini.GetFloat("abc", "float"));
@@ -30,6 +31,12 @@ class panINITest
 		Console.WriteLine("Data paths:");
 		Console.WriteLine(testini.GetPath("Section1", "data1"));
 		Console.WriteLine(testini.GetPath("Section1", "data2"));
+		Console.WriteLine("Lines with comments:");
+		Console.WriteLine(testini.GetPath("Comments", "Space"));
+		Console.WriteLine(testini.GetPath("Comments", "Spaces"));
+		Console.WriteLine(testini.GetPath("Comments", "Tab"));
+		Console.WriteLine(testini.GetPath("Comments", "Tabs"));
+		Console.WriteLine("End of file: " + testini.GetString("End", "LastLine"));
 	}
 }
 
