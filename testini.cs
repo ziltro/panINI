@@ -29,8 +29,11 @@ class panINITest
 		INIFile testini = new INIFile("test.ini");
 		
 		Console.WriteLine("String: " + testini.GetString("abc", "str"));
-		Console.WriteLine("Int: " + testini.GetInt("abc", "int"));
-		Console.WriteLine("Float: " + testini.GetFloat("abc", "float"));
+		Console.WriteLine("Int16: " + testini.GetInt16("abc", "int"));
+		Console.WriteLine("Int32: " + testini.GetInt32("abc", "int"));
+		Console.WriteLine("Int64: " + testini.GetInt64("abc", "int"));
+		Console.WriteLine("Single: " + testini.GetSingle("abc", "float"));
+		Console.WriteLine("Double: " + testini.GetDouble("abc", "float"));
 		Console.WriteLine("Hello: " + testini.GetString("def", "hello"));
 		Console.WriteLine("Data paths:");
 		Console.WriteLine(testini.GetPath("Section1", "data1"));

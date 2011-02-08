@@ -50,16 +50,16 @@ namespace panINI
 			return Path;
 		}
 		
-		public double GetFloat(string Section, string Key)
+		public System.Single GetSingle(string Section, string Key)
 		{
-			return GetFloat(Section, Key, 0.0);
+			return GetSingle(Section, Key, 0.0F);
 		}
 		
-		public double GetFloat(string Section, string Key, double Default)
+		public System.Single GetSingle(string Section, string Key, System.Single Default)
 		{
 			try
 			{
-				return double.Parse(this.GetString(Section, Key, ""));
+				return System.Single.Parse(this.GetString(Section, Key, ""));
 			}
 			catch
 			{
@@ -67,16 +67,118 @@ namespace panINI
 			}
 		}
 		
-		public int GetInt(string Section, string Key)
+		public System.Double GetDouble(string Section, string Key)
 		{
-			return GetInt(Section, Key, 0);
+			return GetDouble(Section, Key, 0.0);
 		}
 		
-		public int GetInt(string Section, string Key, int Default)
+		public System.Double GetDouble(string Section, string Key, System.Double Default)
 		{
 			try
 			{
-				return int.Parse(this.GetString(Section, Key, ""));
+				return System.Double.Parse(this.GetString(Section, Key, ""));
+			}
+			catch
+			{
+				return Default;
+			}
+		}
+		
+		public System.Byte GetByte(string Section, string Key)
+		{
+			return GetByte(Section, Key, 0);
+		}
+		
+		public System.Byte GetByte(string Section, string Key, System.Byte Default)
+		{
+			try
+			{
+				return System.Byte.Parse(this.GetString(Section, Key, ""));
+			}
+			catch
+			{
+				return Default;
+			}
+		}
+		
+		public System.Char GetChar(string Section, string Key)
+		{
+			return GetChar(Section, Key, '\0');
+		}
+		
+		public System.Char GetChar(string Section, string Key, System.Char Default)
+		{
+			try
+			{
+				return System.Char.Parse(this.GetString(Section, Key, ""));
+			}
+			catch
+			{
+				return Default;
+			}
+		}
+		
+		public System.Int16 GetInt16(string Section, string Key)
+		{
+			return GetInt16(Section, Key, 0);
+		}
+		
+		public System.Int16 GetInt16(string Section, string Key, System.Int16 Default)
+		{
+			try
+			{
+				return System.Int16.Parse(this.GetString(Section, Key, ""));
+			}
+			catch
+			{
+				return Default;
+			}
+		}
+		
+		public System.Int32 GetInt32(string Section, string Key)
+		{
+			return GetInt32(Section, Key, 0);
+		}
+		
+		public System.Int32 GetInt32(string Section, string Key, System.Int32 Default)
+		{
+			try
+			{
+				return System.Int32.Parse(this.GetString(Section, Key, ""));
+			}
+			catch
+			{
+				return Default;
+			}
+		}
+		
+		public System.Int64 GetInt64(string Section, string Key)
+		{
+			return GetInt64(Section, Key, 0);
+		}
+		
+		public System.Int64 GetInt64(string Section, string Key, System.Int64 Default)
+		{
+			try
+			{
+				return System.Int64.Parse(this.GetString(Section, Key, ""));
+			}
+			catch
+			{
+				return Default;
+			}
+		}
+		
+		public System.Decimal GetDecimal(string Section, string Key)
+		{
+			return GetDecimal(Section, Key, 0);
+		}
+		
+		public System.Decimal GetDecimal(string Section, string Key, System.Decimal Default)
+		{
+			try
+			{
+				return System.Decimal.Parse(this.GetString(Section, Key, ""));
 			}
 			catch
 			{
