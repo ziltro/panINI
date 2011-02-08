@@ -174,6 +174,50 @@ namespace panINI
 			
 			return false;
 		}
+		
+		public IList<string[]> GetSection(string Section)
+		{
+			StreamReader file;
+			string line;
+			List<string[]> SectionsValues;
+			string[] Value;
+			bool inSection = false;
+			int EqualsLocation;
+
+			file = File.OpenText(this.FileName);
+			SectionsValues = new List<string[]>();
+
+			while ((line = file.ReadLine()) != null)
+			{
+				line = line.Split(';')[0];
+				line = line.Trim();
+				
+				if (line.Length == 0)
+					continue;
+
+				if (line.StartsWith("["))
+				{
+					if (inSection)
+						break;
+						
+					inSection = line.StartsWith("[" + Section + "]", true, null);
+				}
+		
+				if (!inSection)
+					continue;
+				
+				EqualsLocation = line.IndexOf("=");
+				if (EqualsLocation > -1)
+				{
+					Value = new string[2];
+					Value[0] = line.Substring(0, EqualsLocation);
+					Value[1] = line.Substring(EqualsLocation + 1);
+					SectionsValues.Add(Value);
+				}
+			}
+			file.Close();
+			return SectionsValues;
+		}
 	}
 }
 

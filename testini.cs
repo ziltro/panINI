@@ -24,6 +24,7 @@ class panINITest
 	public static void Main (string[] args)
 	{
 		IList<string> sec;
+		IList<string[]> keyvals;
 
 		INIFile testini = new INIFile("test.ini");
 		
@@ -64,6 +65,14 @@ class panINITest
 		foreach(string section in sec)
 		{
 			Console.WriteLine("Section:" + section);
+		}
+
+		keyvals = testini.GetSection("abc");
+		Console.WriteLine("Key/Value pairs:" + keyvals.Count.ToString());
+		foreach(string[] keyval in keyvals)
+		{
+			Console.WriteLine("Key: " + keyval[0]);
+			Console.WriteLine("Value: " + keyval[1]);
 		}
 	}
 }
