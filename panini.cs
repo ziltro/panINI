@@ -148,6 +148,32 @@ namespace panINI
 			file.Close();
 			return Sections;
 		}
+		
+		public bool GetBoolean(string Section, string Key)
+		{
+			return GetBoolean(Section, Key, false);
+		}
+		
+		public bool GetBoolean(string Section, string Key, bool Default)
+		{
+			// Values must be lowercase.
+			string[] TrueValues = new string[] {"1", "yes", "true", "oui"};
+			string[] FalseValues = new string[] {"0", "no", "false", "non"};
+			
+			string Value = this.GetString(Section, Key, Default.ToString());
+
+			if(Default == true)
+			{
+				return !(Array.IndexOf(FalseValues, Value.ToLower()) > -1);
+			}
+			
+			if(Default == false)
+			{
+				return (Array.IndexOf(TrueValues, Value.ToLower()) > -1);
+			}
+			
+			return false;
+		}
 	}
 }
 

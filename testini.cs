@@ -45,6 +45,20 @@ class panINITest
 		Console.WriteLine("Only key doesn't exist: " + testini.GetString("Section1", "Nope", "---×××---"));
 		Console.WriteLine("End of file: " + testini.GetString("End", "LastLine"));
 
+		Console.WriteLine("Booleans:");
+		Console.WriteLine(testini.GetBoolean("Booleans", "1", true).ToString());
+		Console.WriteLine(testini.GetBoolean("Booleans", "1", false).ToString());
+		Console.WriteLine(testini.GetBoolean("Booleans", "1").ToString());
+		Console.WriteLine(testini.GetBoolean("Booleans", "2").ToString());
+		Console.WriteLine(testini.GetBoolean("Booleans", "3").ToString());
+		Console.WriteLine(testini.GetBoolean("Booleans", "4").ToString());
+		Console.WriteLine(testini.GetBoolean("Booleans", "5").ToString());
+		Console.WriteLine(testini.GetBoolean("Booleans", "6").ToString());
+		Console.WriteLine(testini.GetBoolean("Booleans", "7").ToString());
+		Console.WriteLine(testini.GetBoolean("Booleans", "8").ToString());
+		Console.WriteLine(testini.GetBoolean("Booleans", "9", true).ToString());
+		Console.WriteLine(testini.GetBoolean("Booleans", "9", false).ToString());
+
 		sec = testini.GetSectionNames();
 		Console.WriteLine("Sections:" + sec.Count.ToString());
 		foreach(string section in sec)
