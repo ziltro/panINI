@@ -96,7 +96,7 @@ namespace panINI
 			bool inSection = false;
 			string startChar;
 			
-			ret = sDefault;
+			Value = sDefault;
 			file = File.OpenText(this.FileName);
 
 			while ((line = file.ReadLine()) != null)
