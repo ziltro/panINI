@@ -17,12 +17,13 @@
 
 using System;
 using panINI;
+using System.Collections.Generic;
 
 class panINITest
 {
 	public static void Main (string[] args)
 	{
-		string[] sec;
+		List<string> sec;
 		
 		INIFile testini = new INIFile("test.ini");
 		
@@ -45,10 +46,10 @@ class panINITest
 		Console.WriteLine("End of file: " + testini.GetString("End", "LastLine"));
 
 		sec = testini.GetSectionNames();
-		Console.WriteLine("Sections:" + sec.Length.ToString());
-		for(int a = 0; a < sec.Length; a++)
+		Console.WriteLine("Sections:" + sec.Count.ToString());
+		foreach(string section in sec)
 		{
-			Console.WriteLine("Section:" + sec[a]);
+			Console.WriteLine("Section:" + section);
 		}
 	}
 }

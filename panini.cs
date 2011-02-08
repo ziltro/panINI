@@ -17,6 +17,7 @@
 
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace panINI
 {
@@ -121,15 +122,15 @@ namespace panINI
 			file.Close();
 			return Value;
 		}
-		public string[] GetSectionNames()
+		
+		public List<string> GetSectionNames()
 		{
 			StreamReader file;
 			string line;
-			int SectionCount;
-			string[] Sections;
+			List<string> Sections;
 			
-			SectionCount = 0;
-			
+			Sections = new List<string>();
+
 			file = File.OpenText(this.FileName);
 			while ((line = file.ReadLine()) != null)
 			{
@@ -141,33 +142,12 @@ namespace panINI
 
 				if (line.StartsWith("[") && line.EndsWith("]"))
 				{
-					SectionCount++;
-				}
-			}
-			Sections = new string[SectionCount];
-			
-			file.Close();
-
-			SectionCount = 0;
-			
-			file = File.OpenText(this.FileName);
-			while ((line = file.ReadLine()) != null)
-			{
-				line = line.Split(';')[0];
-				line = line.Trim();
-				
-				if (line.Length == 0)
-					continue;
-
-				if (line.StartsWith("[") && line.EndsWith("]"))
-				{
-					Sections[SectionCount] = line.Substring(1, line.Length - 2);
-					SectionCount++;
+					Sections.Add(line.Substring(1, line.Length - 2));
 				}
 			}
 			file.Close();
 			return Sections;
 		}
-	} 
+	}
 }
 
