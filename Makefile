@@ -17,6 +17,10 @@
 
 all: panini.dll testini.exe
 
+test:
+	gmcs -t:library -r:/usr/lib/cli/nunit.framework-2.4/nunit.framework.dll panini.cs paninitest.cs
+	nunit-console panini.dll
+
 %.dll: %.cs
 	gmcs -t:library $<
 
