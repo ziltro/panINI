@@ -15,7 +15,7 @@
 #	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-all: panini.dll testini.exe
+all: panini.dll
 
 test:
 	gmcs -t:library -r:/usr/lib/cli/nunit.framework-2.4/nunit.framework.dll panini.cs paninitest.cs
@@ -28,5 +28,5 @@ test:
 	gmcs -r:panini.dll $<
 
 clean:
-	rm -f testini.exe panini.dll
+	rm -f panini.dll
 
