@@ -48,12 +48,8 @@ namespace panINI
 			Assert.AreEqual("Hello World", ini.GetString("abc", "str"));
 			Assert.AreEqual("world", ini.GetString("def", "Hello"));
 			Assert.AreEqual(ini.GetString("def", "Hello"), ini.GetString("def", "hello"));
-			Assert.AreEqual("abc", ini.GetString("Comments", "Space"));
-			Assert.AreEqual("abc", ini.GetString("Comments", "Spaces"));
-			Assert.AreEqual("abc", ini.GetString("Comments", "Tab"));
-			Assert.AreEqual("abc", ini.GetString("Comments", "Tabs"));
-			Assert.AreEqual("abc", ini.GetString("Section2", "SpacesAtEnd"));
-			Assert.AreEqual("def", ini.GetString("Section2", "TabsAtEnd"));
+			Assert.AreEqual("abc  ", ini.GetString("Section2", "SpacesAtEnd"));
+			Assert.AreEqual("def		", ini.GetString("Section2", "TabsAtEnd"));
 			Assert.AreEqual("---×××---", ini.GetString("Doesnt", "Exist", "---×××---"));
 			Assert.AreEqual("---×××---", ini.GetString("Section1", "Nope", "---×××---"));
 		}
@@ -67,7 +63,7 @@ namespace panINI
 			sec = ini.GetSectionNames();
 			keyvals = ini.GetSection("abc");
 
-			Assert.AreEqual(7, sec.Count);
+			Assert.AreEqual(6, sec.Count);
 			Assert.AreEqual(3, keyvals.Count);
 		}
 	}

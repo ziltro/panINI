@@ -203,10 +203,12 @@ namespace panINI
 
 			while ((line = file.ReadLine()) != null)
 			{
-				line = line.Split(';')[0];
-				line = line.Trim();
+				line = line.TrimStart();
 				
 				if (line.Length == 0)
+					continue;
+
+				if (line.StartsWith(";"))
 					continue;
 
 				if (line.StartsWith("["))
@@ -236,10 +238,12 @@ namespace panINI
 			file = File.OpenText(this.FileName);
 			while ((line = file.ReadLine()) != null)
 			{
-				line = line.Split(';')[0];
-				line = line.Trim();
+				line = line.TrimStart();
 				
 				if (line.Length == 0)
+					continue;
+
+				if (line.StartsWith(";"))
 					continue;
 
 				if (line.StartsWith("[") && line.EndsWith("]"))
@@ -291,10 +295,12 @@ namespace panINI
 
 			while ((line = file.ReadLine()) != null)
 			{
-				line = line.Split(';')[0];
-				line = line.Trim();
+				line = line.TrimStart();
 				
 				if (line.Length == 0)
+					continue;
+
+				if (line.StartsWith(";"))
 					continue;
 
 				if (line.StartsWith("["))
