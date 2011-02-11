@@ -263,22 +263,17 @@ namespace panINI
 		public bool GetBoolean(string Section, string Key, bool Default)
 		{
 			// Values must be lowercase.
-			string[] TrueValues = new string[] {"1", "yes", "true", "oui"};
-			string[] FalseValues = new string[] {"0", "no", "false", "non"};
+			string[] TrueValues = new string[] {"1", "true", "yes", "oui"};
+			string[] FalseValues = new string[] {"0", "false", "no", "non"};
 			
 			string Value = this.GetString(Section, Key, Default.ToString());
 
-			if(Default == true)
+			if(Default)
 			{
-				return !(Array.IndexOf(FalseValues, Value.ToLower()) > -1);
+				return Array.IndexOf(FalseValues, Value.ToLower()) == -1;
 			}
-			
-			if(Default == false)
-			{
-				return (Array.IndexOf(TrueValues, Value.ToLower()) > -1);
-			}
-			
-			return false;
+
+			return (Array.IndexOf(TrueValues, Value.ToLower()) >= 0);
 		}
 		
 		public IList<string[]> GetSection(string Section)
