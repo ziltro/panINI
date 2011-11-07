@@ -1,5 +1,3 @@
 *.exe
 *.dll
-%temp%/
-TestResult.xml
 
