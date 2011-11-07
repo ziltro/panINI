@@ -37,7 +37,7 @@ namespace panINI
 		
 		public string GetPath(string Section, string Key, string Default)
 		{
-			return GetPath(Section, Key, "", System.IO.Path.DirectorySeparatorChar);
+			return GetPath(Section, Key, Default, System.IO.Path.DirectorySeparatorChar);
 		}
 		
 		public string GetPath(string Section, string Key, string Default, char PathSeparator)
