@@ -1,5 +1,5 @@
 /*
-	Copyright © 2011 Andrew Morgan <ziltro@ziltro.com>
+	Copyright © 2011, 2012, 2016 Andrew Morgan <ziltro@ziltro.com>
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU Lesser General Public License as published by
@@ -17,6 +17,7 @@
 
 using System;
 using System.IO;
+using System.Text;
 using System.Collections.Generic;
 
 namespace panINI
@@ -24,10 +25,18 @@ namespace panINI
 	public class INIFile
 	{
 		private string FileName;
-		
+		private Encoding FileEncoding;
+
+		public INIFile(string FileName, Encoding FileEncoding)
+		{
+			this.FileName = FileName;
+			this.FileEncoding = FileEncoding;
+		}
+
 		public INIFile(string FileName)
 		{
 			this.FileName = FileName;
+			this.FileEncoding = Encoding.UTF8;
 		}
 		
 		public string GetPath(string Section, string Key)
@@ -193,13 +202,13 @@ namespace panINI
 		
 		public string GetString(string Section, string Key, string Default)
 		{
-			StreamReader file;
 			string line;
 			string Value;
 			bool inSection = false;
 
 			Value = Default;
-			file = File.OpenText(this.FileName);
+
+			var file = new StreamReader(this.FileName, this.FileEncoding);
 
 			while ((line = file.ReadLine()) != null)
 			{
@@ -229,13 +238,13 @@ namespace panINI
 		
 		public IList<string> GetSectionNames()
 		{
-			StreamReader file;
 			string line;
 			List<string> Sections;
 			
 			Sections = new List<string>();
 
-			file = File.OpenText(this.FileName);
+			var file = new StreamReader(this.FileName, this.FileEncoding);
+
 			while ((line = file.ReadLine()) != null)
 			{
 				line = line.TrimStart();
@@ -278,14 +287,13 @@ namespace panINI
 		
 		public IList<string[]> GetSection(string Section)
 		{
-			StreamReader file;
 			string line;
 			List<string[]> SectionsValues;
 			string[] Value;
 			bool inSection = false;
 			int EqualsLocation;
 
-			file = File.OpenText(this.FileName);
+			var file = new StreamReader(this.FileName, this.FileEncoding);
 			SectionsValues = new List<string[]>();
 
 			while ((line = file.ReadLine()) != null)
