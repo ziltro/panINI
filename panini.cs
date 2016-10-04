@@ -329,6 +329,89 @@ namespace panINI
 			file.Close();
 			return SectionsValues;
 		}
+
+		public void SetString(string Section, string Key, string Value)
+		{
+			string[] contents;
+			StringBuilder outputINI = new StringBuilder();
+			bool inSection = false;
+			bool alreadyWritten = false;
+			string line;
+
+			contents = File.ReadAllLines(this.FileName, this.FileEncoding);
+
+			foreach(string l in contents)
+			{
+				line = l.TrimStart();
+
+				if (line.Length == 0)
+				{
+					outputINI.AppendLine(l);
+					continue;
+				}
+
+				if (line.StartsWith(";"))
+				{
+					outputINI.AppendLine(l);
+					continue;
+				}
+
+				if (line.StartsWith("["))
+				{
+					if (inSection && !alreadyWritten)
+					{
+						outputINI.Append(Key);
+						outputINI.Append("=");
+						outputINI.AppendLine(Value);
+						alreadyWritten = true;
+					}
+					inSection = line.StartsWith("[" + Section + "]", true, null);
+				}
+
+				if (!inSection)
+				{
+					outputINI.AppendLine(l);
+					continue;
+				}
+
+				if (line.StartsWith(Key + "=", true, null))
+				{
+					outputINI.Append(Key);
+					outputINI.Append("=");
+					outputINI.AppendLine(Value);
+					alreadyWritten = true;
+				}
+				else
+				{
+					outputINI.AppendLine(l);
+				}
+			}
+
+			if (!alreadyWritten)
+			{
+				outputINI.Append("[");
+				outputINI.Append(Section);
+				outputINI.AppendLine("]");
+				outputINI.Append(Key);
+				outputINI.Append("=");
+				outputINI.AppendLine(Value);
+				alreadyWritten = true;
+			}
+
+			File.WriteAllText(this.FileName, outputINI.ToString(), this.FileEncoding);
+		}
+
+		public void SetBoolean(string Section, string Key, bool Value)
+		{
+			if (Value)
+			{
+				this.SetString(Section, Key, "true");
+			}
+			else
+			{
+				this.SetString(Section, Key, "false");
+			}
+		}
 	}
 }
 
