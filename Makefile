@@ -18,14 +18,14 @@
 all: panini.dll
 
 test:
-	gmcs -t:library -r:/usr/lib/cli/nunit.framework-2.4/nunit.framework.dll panini.cs paninitest.cs
+	mcs -t:library -r:/usr/lib/cli/nunit.framework-2.4/nunit.framework.dll panini.cs paninitest.cs
 	nunit-console panini.dll
 
 %.dll: %.cs
-	gmcs -t:library $<
+	mcs -t:library $<
 
 %.exe: %.cs
-	gmcs -r:panini.dll $<
+	mcs -r:panini.dll $<
 
 clean:
 	rm -f panini.dll
